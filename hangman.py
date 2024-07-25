@@ -68,3 +68,39 @@ def check_answer(player_guess, ans, guess ):
         guess[i] = ans[i]
     else:
       break
+
+def main():
+  ans = random.choice(words)
+  error_count = 0
+  
+  guess = ["_"] * len(ans)
+
+  while True:
+    print(*guess, sep = " ")
+    # Display hint
+    print("HINT: Animals")
+    
+    # Display hangman
+    print(HANGMANPICS[error_count])
+    
+    player_guess = input(str("Enter your guess: ")).lower()
+    
+    check_answer(player_guess, ans, guess)
+    
+    print(*guess, sep = " ")
+    
+    # Check win condition
+    if error_count == 6:
+      print("YOU LOST")
+      break
+    else:
+      if "_" not in guess:
+        print("YOU WON!")
+        break
+      else:
+        error_count += 1
+    
+    
+    
+if __name__ == "__main__":
+  main()
